@@ -4,8 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %} {% endblock %} | Linkly</title>
   </head>
   <body>
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
+    <nav class="p-6 bg-gray-800 flex items-center justify-between">
+      <a href="/" class="text-xl text-yellow-600">Linkly</a>
+
+      <div class="space-x-4">
+        <a href="#" class="text-white">About</a>
+        <a href="#" class="text-white">Pricing</a>
+        <a href="#" class="bg-yellow-600 text-white rounded-xl p-2">Sign Up</a>
+        <a href="#" class="bg-gray-600 text-white rounded-xl p-2">Log in</a>
+      </div>
+    </nav>
+
+    <main class="p-6">{% block content %} {% endblock %}</main>
+
+    <footer class="bg-gray-900 p-6">
+      <p class="text-xs text-gray-400">Copyright (c) 2023 - Linkly</p>
+    </footer>
   </body>
 </html>

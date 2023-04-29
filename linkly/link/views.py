@@ -70,3 +70,31 @@ def add_link(request):
         form = LinkForm()
         form.fields['category'].queryset = Category.objects.filter(created_by=request.user)
         return render(request, 'link/create_link.html', {'form': form})
+
+
+@login_required
+def edit_link(request, pk):
+    link = Link.objects.get(id=pk)
+    form = LinkForm(request.POST or None, instance=link)
+    if form.is_valid():
+            link = form.save(commit=False)
+            link.created_by = request.user
+            link.save()
+            return redirect('/dashboard/')
+    else:
+        form = LinkForm(instance=link)
+        return render(request, 'link/edit_link.html', {'form': form})
+
+
+
+
+
+
+
+
+
+@login_required
+def delete_link(request, pk):
+    category = Link.objects.get(id=pk)
+    category.delete()
+    return redirect('/dashboard/')

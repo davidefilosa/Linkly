@@ -37,7 +37,10 @@
         {% if link.decription%}
         <p class="text-xs mb-4">{{link.decription}}</p>
         {% endif %}
-        <a href="{{link.url}}" class="text-yellow-600" target="_blank">Open link</a>
+        <a href="{{link.url}}" class="text-yellow-600 mr-4" target="_blank">Open</a>
+        <a href="{% url 'edit_link' link.id %}" class="text-yellow-600 mr-4">Edit</a>
+        <a href="{% url 'delete_link' link.id %}" class="text-red-600">Delete</a>
+
     </div>
     
     

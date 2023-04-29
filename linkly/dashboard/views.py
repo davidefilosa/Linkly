@@ -6,10 +6,14 @@ from link.models import Link, Category
 
 @login_required
 def dashboard(request):
-    new_links = Link.objects.filter(created_by=request.user)
     categories = Category.objects.filter(created_by=request.user)
+    filter = request.GET.get('filter', '')
+    links = Link.objects.filter(created_by=request.user)
 
-    return render(request, 'dashboard/dashboard.html', {'new_links': new_links, 'categories': categories})
+    if filter:
+        links = links.filter(category_id=filter)
+
+    return render(request, 'dashboard/dashboard.html', {'links': links, 'categories': categories})
 
 
 

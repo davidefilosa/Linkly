@@ -30,7 +30,7 @@
 
 <div class="grid grid-cols-3 gap-3">
 
-    {% for link in new_links %}
+    {% for link in links %}
     
     <div class="bg-gray-100 p-6 rounded-xl">
         <h2 class="text-xl mb-4">{{link.name}}</h2>
@@ -45,8 +45,25 @@
     
     
     {% endfor %}
+
     
     </div>
+
+    <div class="flex flex-row gap-3 mt-4"> 
+        
+        <h2 class="text-xl">Filter: </h2>
+
+        
+        
+        {% for category in categories %}
+    
+        <a class="text-xl text-yellow-600" href="{% url 'dashboard' %}?filter={{ category.id }}">#{{category.name}}</a> 
+        
+
+    
+    {% endfor %}</div>
+
+   
 
 
 {% endblock %}

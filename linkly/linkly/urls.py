@@ -22,6 +22,8 @@ urlpatterns = [
     path('', include('app.urls')),
     path('accounts/', include('accounts.urls')),
     path('link/', include('link.urls')),
+    path('dashboard/', include('dashboard.urls')),
+
 
 
 ]

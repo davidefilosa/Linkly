@@ -17,7 +17,7 @@ def add_category(request):
             category = form.save(commit=False)
             category.created_by = request.user
             category.save()
-            return redirect('/')
+            return redirect('/dashboard/')
     else:
         form = CategoryForm()
         return render(request, 'link/create_category.html', {'form': form})
@@ -32,7 +32,7 @@ def add_link(request):
             link = form.save(commit=False)
             link.created_by = request.user
             link.save()
-            return redirect('/link/links')
+            return redirect('/dashboard/')
     else:
         form = LinkForm()
         form.fields['category'].queryset = Category.objects.filter(created_by=request.user)

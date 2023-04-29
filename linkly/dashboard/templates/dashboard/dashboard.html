@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %} 
+
+{% block title %} Dashboard {% endblock %} 
+
+
+
+
+{% block content %}
+<h1 class="mb-6 text-xl">Dashboard</h1>
+
+<h2 class="mb-6 text-xl">Newest Links</h2>
+
+
+<div class="grid grid-cols-3 gap-3">
+
+    {% for link in new_links %}
+    
+    <div class="bg-gray-100 p-6 rounded-xl">
+        <h2 class="text-xl mb-4">{{link.name}}</h2>
+        {% if link.decription%}
+        <p class="text-xs mb-4">{{link.decription}}</p>
+        {% endif %}
+        <a href="{{link.url}}" class="text-yellow-600" target="_blank">Open link</a>
+    </div>
+    
+    
+    {% endfor %}
+    
+    </div>
+
+
+{% endblock %}

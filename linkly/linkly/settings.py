@@ -31,6 +31,10 @@ AUTH_USER_MODEL = "accounts.User"
 
 LOGOUT_REDIRECT_URL = "/"
 
+LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL = '/dashboard/'
+
 
 # Application definition
 
@@ -43,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'accounts',
-    'link'
+    'link',
+    'dashboard'
 ]
 
 MIDDLEWARE = [

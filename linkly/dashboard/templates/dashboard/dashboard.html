@@ -8,8 +8,25 @@
 {% block content %}
 <h1 class="mb-6 text-xl">Dashboard</h1>
 
-<h2 class="mb-6 text-xl">Newest Links</h2>
+<h2 class="mb-6 text-xl">Categories</h2>
 
+<div class="flex flex-row flex-wrap gap-3 mb-4">
+
+    {% for category in categories %}
+    
+    <div class="bg-gray-100 px-6 py-2 rounded-xl">
+        <h2 class="text-xl mb-4">{{category.name}}</h2> 
+        <a class="text-xs mr-4 text-yellow-600" href="{% url 'edit_category' category.id %}">Edit</a>
+        <a class="text-xs text-red-600" href="{% url 'delete_category' category.id %}">Delete</a>
+    </div>
+
+    
+    {% endfor %}
+    
+    </div>
+
+
+<h2 class="mb-6 text-xl">Links</h2>
 
 <div class="grid grid-cols-3 gap-3">
 

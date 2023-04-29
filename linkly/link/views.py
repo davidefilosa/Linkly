@@ -9,6 +9,15 @@ def links(request):
     links = Link.objects.filter(created_by=request.user)
     return render(request, 'link/links.html', {'links': links})
 
+
+
+@login_required
+def categories(request):
+    categories = Category.objects.filter(created_by=request.user)
+    return render(request, 'link/categories.html', {'categories': categories})
+
+
+
 @login_required
 def add_category(request):
     if request.method == "POST":
@@ -21,6 +30,30 @@ def add_category(request):
     else:
         form = CategoryForm()
         return render(request, 'link/create_category.html', {'form': form})
+
+
+
+@login_required
+def edit_category(request, pk):
+    category = Category.objects.get(id=pk)
+    form = CategoryForm(request.POST or None, instance=category)
+    if form.is_valid():
+            category = form.save(commit=False)
+            category.created_by = request.user
+            category.save()
+            return redirect('/dashboard/')
+    else:
+        form = CategoryForm(instance=category)
+        return render(request, 'link/edit_category.html', {'form': form})
+
+
+
+@login_required
+def delete_category(request, pk):
+    category = Category.objects.get(id=pk)
+    category.delete()
+    return redirect('/dashboard/')
+
 
 
 
